@@ -10,12 +10,21 @@ $AZURE_CLIENT_SECRET = $env:AZURE_CLIENT_SECRET
 
 # Authenticate using Service Principal
 Write-Host "Authentication using Service Principal..."
+# Ensure Azure PowerShell module is installed and imported
+Install-Module -Name Az -AllowClobber -Force -Scope CurrentUser
+Import-Module Az
+
+# Create a PSCredential object for authentication
 $creds = New-Object -TypeName System.Management.Automation.PSCredential -ArgumentList $AZURE_CLIENT_ID, (ConvertTo-SecureString $AZURE_CLIENT_SECRET -AsPlainText -Force)
-Connect-AzAccount -ServicePrincipal -TenantId $AZURE_TENANT_ID -Credential $creds
-if (-not (Get-AzContext)) {
-    Write-Host "❌ Error: Failed to login using Service Principal."
+
+# Attempt to connect using Service Principal
+try {
+    Connect-AzAccount -ServicePrincipal -TenantId $AZURE_TENANT_ID -Credential $creds
+} catch {
+    Write-Host "❌ Error: Failed to authenticate using Service Principal. $_"
     exit 1
 }
+
 
 Write-Host "🔄 Validating required environment variables..."
 if (-not $SUBSCRIPTION_ID -or -not $GPT_MIN_CAPACITY -or -not $TEXT_EMBEDDING_MIN_CAPACITY) {
