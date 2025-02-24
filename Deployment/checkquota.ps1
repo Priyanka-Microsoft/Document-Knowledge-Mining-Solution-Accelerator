@@ -25,6 +25,9 @@ try {
     exit 1
 }
 
+Write-Host "Subscription ID: $SUBSCRIPTION_ID"
+Write-Host "GPT Min Capacity: $GPT_MIN_CAPACITY"
+Write-Host "Text Embedding Min Capacity: $TEXT_EMBEDDING_MIN_CAPACITY"
 
 Write-Host "🔄 Validating required environment variables..."
 if (-not $SUBSCRIPTION_ID -or -not $GPT_MIN_CAPACITY -or -not $TEXT_EMBEDDING_MIN_CAPACITY) {
