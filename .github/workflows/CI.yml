@@ -91,8 +91,8 @@ jobs:
         AZURE_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
         AZURE_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
         AZURE_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
-        GPT_MIN_CAPACITY: ${{ secrets.GPT_MIN_CAPACITY }}
-        TEXT_EMBEDDING_MIN_CAPACITY: ${{ secrets.TEXT_EMBEDDING_MIN_CAPACITY }}
+        GPT_MIN_CAPACITY: '130'
+        TEXT_EMBEDDING_MIN_CAPACITY: '80'
   
 
     # Send Notification on Quota Failure
