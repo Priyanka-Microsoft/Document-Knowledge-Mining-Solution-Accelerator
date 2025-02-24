@@ -62,10 +62,10 @@ foreach ($REGION in $REGIONS) {
 
     foreach ($MODEL in $MIN_CAPACITY.Keys) {
 
-        Write-Host "MODEL_INFO ID: $MODEL_INFO"
-        Write-Host "QUOTA_INFO: $QUOTA_INFO"
-
         $MODEL_INFO = $QUOTA_INFO | Where-Object { $_.Name -eq $MODEL }
+
+        Write-Host "MODEL_INFO ID: $MODEL_INFO"
+        Write-Host "QUOTA_INFO: $QUOTA_INFO"    
         
         if (-not $MODEL_INFO) {
             Write-Host "⚠️ WARNING: No quota information found for model: $MODEL in $REGION. Skipping."
