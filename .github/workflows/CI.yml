@@ -124,7 +124,7 @@ jobs:
     - name: Set Deployment Region
       run: |
         echo "Selected Region: ${{ env.VALID_REGION }}"
-        echo "AZURE_LOCATION=${{ env.VALID_REGION }}" >> $GITHUB_ENV
+        echo "VALID_REGION=${{ env.VALID_REGION }}" >> $GITHUB_ENV
 
     - name: Run Deployment Script with Input
       shell: pwsh
@@ -133,7 +133,7 @@ jobs:
         $input = @"
         ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         CanadaCentral
-        ${{ env.AZURE_LOCATION }}
+        ${{ env.VALID_REGION }}
         ${{ secrets.EMAIL }}
         yes
         "@
@@ -206,8 +206,8 @@ jobs:
                   Write-Host "Purging CognitiveService Account: $cognitiveservice_name"
           
                   # Construct resource IDs
-                  $openaiResourceId = "/subscriptions/$subscriptionId/providers/Microsoft.CognitiveServices/locations/${{ env.AZURE_LOCATION }}/resourceGroups/$resourceGroupName/deletedAccounts/$openai_name"
-                  $cognitiveResourceId = "/subscriptions/$subscriptionId/providers/Microsoft.CognitiveServices/locations/${{ env.AZURE_LOCATION }}/resourceGroups/$resourceGroupName/deletedAccounts/$cognitiveservice_name"
+                  $openaiResourceId = "/subscriptions/$subscriptionId/providers/Microsoft.CognitiveServices/locations/${{ env.VALID_REGION }}/resourceGroups/$resourceGroupName/deletedAccounts/$openai_name"
+                  $cognitiveResourceId = "/subscriptions/$subscriptionId/providers/Microsoft.CognitiveServices/locations/${{ env.VALID_REGION }}/resourceGroups/$resourceGroupName/deletedAccounts/$cognitiveservice_name"
           
                   # Debug: Print constructed resource IDs
                   Write-Host "Command to purge OpenAI resource: az resource delete --ids `"$openaiResourceId`" --verbose"
