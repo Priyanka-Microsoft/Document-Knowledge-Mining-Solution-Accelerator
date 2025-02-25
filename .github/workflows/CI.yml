@@ -125,6 +125,8 @@ jobs:
       run: |
         echo "Selected Region: $VALID_REGION"
         echo "AZURE_LOCATION=$VALID_REGION" >> $GITHUB_ENV
+      env:
+        AZURE_LOCATION: $VALID_REGION
 
     - name: Run Deployment Script with Input
       shell: pwsh
