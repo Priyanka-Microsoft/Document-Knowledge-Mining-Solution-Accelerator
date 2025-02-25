@@ -1,5 +1,5 @@
 # List of Azure regions to check for quota (update as needed)
-$REGIONS = @("eastus")
+$REGIONS = @("eastus","CanadaCentral", "WestUS3")
 
 $SUBSCRIPTION_ID = $env:AZURE_SUBSCRIPTION_ID
 $GPT_MIN_CAPACITY = $env:GPT_MIN_CAPACITY
