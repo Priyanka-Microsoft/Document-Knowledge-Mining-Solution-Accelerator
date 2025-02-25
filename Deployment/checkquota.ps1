@@ -1,5 +1,5 @@
 # List of Azure regions to check for quota (update as needed)
-$REGIONS = @("WestUS3", "CanadaCentral", "eastus", "WestUS3")
+$REGIONS = @("WestUS3", "CanadaCentral", "eastus")
 
 $SUBSCRIPTION_ID = $env:AZURE_SUBSCRIPTION_ID
 $GPT_MIN_CAPACITY = $env:GPT_MIN_CAPACITY
@@ -99,6 +99,6 @@ if (-not $VALID_REGION) {
     exit 0
 } else {
     Write-Host "✅ Suggested Region: $VALID_REGION"
-    echo "VALID_REGION=$VALID_REGION" >> $env:GITHUB_ENV  # Set VALID_REGION for subsequent steps
+    echo "QUOTA_FAILED=true" >> $env:GITHUB_ENV   # Set VALID_REGION for subsequent steps
     exit 0
 }

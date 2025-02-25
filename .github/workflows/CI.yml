@@ -121,11 +121,6 @@ jobs:
       if: env.QUOTA_FAILED == 'true'
       run: exit 1
 
-    - name: Set Deployment Region
-      run: |
-        echo "Selected Region: ${{ env.VALID_REGION }}"
-        echo "VALID_REGION=${{ env.VALID_REGION }}" >> $GITHUB_ENV
-
     - name: Run Deployment Script with Input
       shell: pwsh
       run: |
