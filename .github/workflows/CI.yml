@@ -124,9 +124,7 @@ jobs:
     - name: Set Deployment Region
       run: |
         echo "Selected Region: ${{ env.VALID_REGION }}"
-        echo "AZURE_LOCATION=$VALID_REGION" >> $GITHUB_ENV
-      env:
-        AZURE_LOCATION: ${{ env.VALID_REGION }}
+        echo "AZURE_LOCATION=${{ env.VALID_REGION }}" >> $GITHUB_ENV
 
     - name: Run Deployment Script with Input
       shell: pwsh
@@ -134,7 +132,7 @@ jobs:
         cd Deployment
         $input = @"
         ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-        ${{ env.AZURE_LOCATION }}
+        CanadaCentral
         ${{ env.AZURE_LOCATION }}
         ${{ secrets.EMAIL }}
         yes
