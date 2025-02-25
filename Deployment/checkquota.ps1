@@ -95,10 +95,10 @@ foreach ($REGION in $REGIONS) {
 
 if (-not $VALID_REGION) {
     Write-Host "❌ No region with sufficient quota found. Blocking deployment."
-    Write-Host "QUOTA_FAILED=true" | Out-File -Append $env:GITHUB_ENV
+    echo "QUOTA_FAILED=true" >> $env:GITHUB_ENV  # Set QUOTA_FAILED for subsequent steps
     exit 0
 } else {
     Write-Host "✅ Suggested Region: $VALID_REGION"
-    Write-Host "VALID_REGION=$VALID_REGION" | Out-File -Append $env:GITHUB_ENV
+    echo "VALID_REGION=$VALID_REGION" >> $env:GITHUB_ENV  # Set VALID_REGION for subsequent steps
     exit 0
 }
