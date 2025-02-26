@@ -1,6 +1,6 @@
 Write-Host "📍 Raw AZURE_REGIONS: $env:AZURE_REGIONS"
 
-$AZURE_REGIONS = "'$env:AZURE_REGIONS'"
+$AZURE_REGIONS = "$env:AZURE_REGIONS"
 # Ensure regions are correctly split and trimmed
 $REGIONS = ($AZURE_REGIONS -split '[,\s]') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
 
