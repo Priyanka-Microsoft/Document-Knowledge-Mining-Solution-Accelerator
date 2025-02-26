@@ -1,10 +1,9 @@
-Write-Host "📍 Regions to check: $env:AZURE_REGIONS"
+Write-Host "📍 Raw AZURE_REGIONS: $env:AZURE_REGIONS"
 
-# List of Azure regions to check for quota (update as needed)
+# Ensure regions are correctly split and trimmed
 $REGIONS = ($env:AZURE_REGIONS -split ',') | ForEach-Object { $_.Trim() }
 
-# Debugging output
-Write-Host "📍 Regions to check: $REGIONS"
+Write-Host "📍 Processed Regions: $($REGIONS -join ', ')"
 
 $SUBSCRIPTION_ID = $env:AZURE_SUBSCRIPTION_ID
 $GPT_MIN_CAPACITY = $env:GPT_MIN_CAPACITY
