@@ -1,7 +1,8 @@
 Write-Host "📍 Raw AZURE_REGIONS: $env:AZURE_REGIONS"
 
+$AZURE_REGIONS = "'$env:AZURE_REGIONS'"
 # Ensure regions are correctly split and trimmed
-$REGIONS = ($env:AZURE_REGIONS -split ',') | ForEach-Object { $_.Trim() }
+$REGIONS = ($AZURE_REGIONS -split ',') | ForEach-Object { $_.Trim() }
 
 Write-Host "📍 Processed Regions: $($REGIONS -join ', ')"
 
