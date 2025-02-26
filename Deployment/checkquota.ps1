@@ -1,7 +1,7 @@
 Write-Host "📍 Regions to check: $env:AZURE_REGIONS"
 
 # List of Azure regions to check for quota (update as needed)
-$REGIONS = $env:AZURE_REGIONS -split ','  # Splitting by comma
+$REGIONS = ($env:AZURE_REGIONS -split ',') | ForEach-Object { $_.Trim() }
 
 # Debugging output
 Write-Host "📍 Regions to check: $REGIONS"
