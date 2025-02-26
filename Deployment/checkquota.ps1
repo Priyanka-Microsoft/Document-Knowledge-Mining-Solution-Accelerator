@@ -2,9 +2,9 @@ Write-Host "📍 Raw AZURE_REGIONS: $env:AZURE_REGIONS"
 
 $AZURE_REGIONS = "'$env:AZURE_REGIONS'"
 # Ensure regions are correctly split and trimmed
-$REGIONS = ($AZURE_REGIONS -split ',') | ForEach-Object { $_.Trim() }
+$REGIONS = ($AZURE_REGIONS -split '[,\s]') | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne "" }
 
-Write-Host "📍 Processed Regions: $($REGIONS -join ', ')"
+Write-Output "📍 Processed Regions: $($REGIONS -join ', ')"
 
 $SUBSCRIPTION_ID = $env:AZURE_SUBSCRIPTION_ID
 $GPT_MIN_CAPACITY = $env:GPT_MIN_CAPACITY
