@@ -2,15 +2,11 @@ name: Validate Deployment
 on:
   push:
     branches:
-      - main
+      - main  # Adjust this to the branch you want to trigger the deployment on
       - dev
       - demo
-  pull_request:
-    branches:
-      - main
-      - dev
-      - demo
-  workflow_dispatch: # Runs at 10:00 AM and 10:00 PM GMT
+  schedule:
+    - cron: '0 10,22 * * *'  # Runs at 10:00 AM and 10:00 PM GMT
  
 
 jobs:
@@ -59,7 +55,7 @@ jobs:
       shell: pwsh
       run: |
         $PSVersionTable.PSVersion
-    
+
     # Run Quota Check Script
     - name: Run Quota Check
       id: quota-check
