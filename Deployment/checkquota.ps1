@@ -70,7 +70,8 @@ foreach ($REGION in $REGIONS) {
         
         if (-not $MODEL_INFO) {
             Write-Host "⚠️ WARNING: No quota information found for model: $MODEL in $REGION. Skipping."
-            continue
+            $INSUFFICIENT_QUOTA = $true
+            break
         }
 
         $CURRENT_VALUE = [int]$MODEL_INFO.CurrentValue
