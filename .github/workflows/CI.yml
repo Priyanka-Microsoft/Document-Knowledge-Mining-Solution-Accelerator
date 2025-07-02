@@ -1,12 +1,16 @@
 name: Validate Deployment
 on:
   push:
-    branches:
-      - main # Adjust this to the branch you want to trigger the deployment on
-      - dev
-      - demo
-  schedule:
-    - cron: "0 10,22 * * *" # Runs at 10:00 AM and 10:00 PM GMT
+    branches: [main, dev, demo]
+  pull_request:
+    branches: [main, dev, demo]
+    types:
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+  merge_group:
+  workflow_dispatch:
 
 jobs:
   deploy:
