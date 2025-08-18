@@ -2,11 +2,22 @@ name: Deploy-Test-Cleanup Pipeline
 on:
   push:
     branches:
-      - main # Adjust this to the branch you want to trigger the deployment on
+      - main
       - dev
       - demo
-  schedule:
-    - cron: "0 10,22 * * *" # Runs at 10:00 AM and 10:00 PM GMT
+      - hotfix
+  pull_request:
+    types:
+      - opened
+      - ready_for_review
+      - reopened
+      - synchronize
+    branches:
+      - main
+      - dev
+      - demo
+      - hotfix
+  workflow_dispatch:
 
 env:
   GPT_CAPACITY: 250
